@@ -5,6 +5,7 @@ import {
   showLoader,
   hideLoader,
 } from './js/render-functions.js';
+
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
@@ -21,8 +22,6 @@ form.addEventListener('submit', event => {
 
   fetchImages(query, 1)
     .then(data => {
-      hideLoader();
-
       if (data.hits.length === 0) {
         showNoResultsToast();
         return;
@@ -32,17 +31,9 @@ form.addEventListener('submit', event => {
       form.reset();
     })
     .catch(error => {
-      hideLoader();
       console.log('Ошибка при загрузке картинок:', error);
+    })
+    .finally(() => {
+      hideLoader();
     });
 });
-
-function showNoResultsToast() {
-  iziToast.warning({
-    title: 'Oops!',
-    message:
-      'Sorry, there are no images matching your search query. Please try again!',
-    position: 'topRight',
-    timeout: 3000,
-  });
-}

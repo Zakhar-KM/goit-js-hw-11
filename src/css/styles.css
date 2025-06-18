@@ -1,6 +1,6 @@
 @import url('./reset.css');
 @import url('./base.css');
-
+@import 'loaders.css/loaders.css';
 *,
 *::before,
 *::after {
@@ -57,20 +57,37 @@ button {
 /* #endregion reset */
 
 .loader {
-  border: 8px solid #f3f3f3;
-  border-top: 8px solid #3498db;
+  width: 48px;
+  height: 48px;
+  border: 2px solid #fff;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  animation: spin 1s linear infinite;
-  margin: 30px auto;
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+.loader::after,
+.loader::before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #ff3d00;
+  width: 6px;
+  height: 6px;
+  transform: translate(150%, 150%);
+  border-radius: 50%;
+}
+.loader::before {
+  left: auto;
+  top: auto;
+  right: 0;
+  bottom: 0;
+  transform: translate(-150%, -150%);
 }
 
-.hidden {
-  display: none;
-}
-
-@keyframes spin {
+@keyframes rotation {
   0% {
     transform: rotate(0deg);
   }
@@ -78,6 +95,20 @@ button {
     transform: rotate(360deg);
   }
 }
+.loader-container {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.hidden {
+  display: none;
+}
+
 .form {
   margin: 0 auto 40px;
 }
