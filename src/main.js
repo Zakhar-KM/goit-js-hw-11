@@ -1,13 +1,13 @@
 import { fetchImages } from './js/pixabay-api.js';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 import {
   createGallery,
   clearGallery,
   showLoader,
   hideLoader,
+  showNoResultsToast,
 } from './js/render-functions.js';
-
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.getElementById('search-form');
 
@@ -31,7 +31,7 @@ form.addEventListener('submit', event => {
       form.reset();
     })
     .catch(error => {
-      console.log('Ошибка при загрузке картинок:', error);
+      console.log('Помилка при завантаженні:', error);
     })
     .finally(() => {
       hideLoader();

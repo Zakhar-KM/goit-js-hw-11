@@ -47,3 +47,12 @@ export function showLoader() {
 export function hideLoader() {
   document.querySelector('.loader-container').classList.add('hidden');
 }
+export function showNoResultsToast() {
+  iziToast.warning({
+    title: 'Oops!',
+    message:
+      'Sorry, there are no images matching your search query. Please try again!',
+    position: 'topRight',
+    timeout: 3000,
+  });
+}
