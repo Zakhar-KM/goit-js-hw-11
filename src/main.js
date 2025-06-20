@@ -6,7 +6,6 @@ import {
   clearGallery,
   showLoader,
   hideLoader,
-  showNoResultsToast,
 } from './js/render-functions.js';
 
 const form = document.getElementById('search-form');
@@ -37,3 +36,13 @@ form.addEventListener('submit', event => {
       hideLoader();
     });
 });
+
+function showNoResultsToast() {
+  iziToast.warning({
+    title: 'Oops!',
+    message:
+      'Sorry, there are no images matching your search query. Please try again!',
+    position: 'topRight',
+    timeout: 3000,
+  });
+}
